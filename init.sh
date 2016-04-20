@@ -12,7 +12,8 @@ render() {
 		else
 			if [ $currfile != $DIRNAME"/"${0##*/} ] && [ ${currfile##*.} == 'sh' ]
 			then
-				echo $currfile	
+				.  $currfile	
+				echo $currfile
 			fi
 		fi
 	done
