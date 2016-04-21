@@ -20,8 +20,11 @@ inoremap <C-u> <esc>gUiwea
 inoremap jj <esc>
 inoremap kk <esc>:wq<Enter>
 inoremap ll <esc>A
+inoremap hh <esc>^i
 inoremap pp <C-p>
 inoremap uu <esc>u
+nnoremap ii ^i#<esc>j^
+"nnoremap kk :wq<Enter> 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
   augroup redhat
