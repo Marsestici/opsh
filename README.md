@@ -1,2 +1,2 @@
-# ops-framework
-bash ops tools set
+# OPSH
+bash ops shell
