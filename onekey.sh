@@ -1,16 +1,5 @@
 #! /bin/bash
-
 export envInit=0
-
-#Git install
-#wget -c https://github.com/git/git/archive/master.zip
-#unzip master.zip
-#cd git-master
-#ln -sf /usr/local/bin/git /usr/bin/git
-#git config --global user.name "murwen"
-#git config --global user.email "murwenBing@hotmail.com"
-
-#make && make install
 init(){
     clear
     ft l
@@ -153,8 +142,6 @@ install_nginx(){
 			--with-http_ssl_module \
 			--with-http_flv_module \
 			--with-http_gzip_static_module \
-			--http-log-path=/var/log/nginx/access.log \
-			--http-client-body-temp-path=/var/tmp/nginx/client \
 			--http-proxy-temp-path=/var/tmp/nginx/proxy \
 			--http-fastcgi-temp-path=/var/tmp/nginx/fcgi \
 			--with-http_stub_status_module
@@ -341,9 +328,9 @@ install_git(){
             cd $dir_name;
 			wget $url_path 
 			unzip v2.9.3.zip	
-			exit;
 			cd git-2.9.3	
-			./configure && make && make test && sudo make install
+            autoconf
+			./configure && make && make install
             echo "Git Complete install";
 			install
         else
