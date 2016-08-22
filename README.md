@@ -1,2 +1,0 @@
-# OPSH
-bash ops shell
