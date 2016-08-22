@@ -4,8 +4,8 @@ install_mysql(){
     if [ $(whereis -b mysqld | tr ' ' '\n' | wc -l) -gt 1 ];then
         echo "mysql has intalled in this machine";install
     else
-        local url_path="http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.51.tar.gz"
-        local dir_name=$envpath"/mysql"
+        local url_path=$(get_ini mysql src)
+        local dir_name=$(get_ini global dlPath)/$(get_ini mysql dir)
         if [ ! -d $dir_name ];then 
             mkdir -p $dir_name 2> /dev/null
         fi
@@ -15,9 +15,9 @@ install_mysql(){
 			tar zxvf mysql-5.5.51.tar.gz
 			cd mysql-5.5.51 
 			cmake \
-			-DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
-			-DMYSQL_DATADIR=/usr/local/mysql/data \
-			-DSYSCONFDIR=/etc \
+            -DCMAKE_INSTALL_PREFIX=$(get_ini global prefix)/$(get_ini mysql dir) \
+            -DMYSQL_DATADIR=$(get_ini global prefix)/$(get_ini mysql dir)/data \
+            -DSYSCONFDIR=$(get_ini global confDir) \
 			-DWITH_MYISAM_STORAGE_ENGINE=1 \
 			-DWITH_INNOBASE_STORAGE_ENGINE=1 \
 			-DWITH_MEMORY_STORAGE_ENGINE=1 \
@@ -30,10 +30,10 @@ install_mysql(){
 			-DDEFAULT_CHARSET=utf8 \
 			-DDEFAULT_COLLATION=utf8_general_ci
 			make && make install
-            echo "Redis Complete install";
+            echo "Mysql Complete install";
 			install
         else
-            echo "install redis faild"
+            echo "install mysql faild"
         fi
     fi
 }

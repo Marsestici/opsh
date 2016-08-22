@@ -4,8 +4,8 @@ install_php(){
 	if [ $(php -v) -eq 0 ]; then
         echo "PHP has intalled in this machine";install
     else
-        local url_path="http://cn2.php.net/get/php-5.5.38.tar.gz/from/this/mirror"
-        local dir_name=$envpath"/php"
+        local url_path=$(get_ini php src)
+        local dir_name=$(get_ini global dlPath)/$(get_ini php dir)
         if [ ! -d $dir_name ];then 
             mkdir -p $dir_name 2> /dev/null
         fi
@@ -14,8 +14,8 @@ install_php(){
             cd php-5.5.38 
 
             ./configure \
-            --prefix=/usr/local/php \
-            --with-config-file-path=/etc/php \
+            --prefix=$(get_ini global prefix) \
+            --with-config-file-path=$(get_ini global confDir) \
             --enable-fpm \
             --enable-pcntl \
 		    --enable-mysqlnd \
@@ -45,11 +45,11 @@ install_php(){
             --with-mhash \
             --with-xmlrpc \
             --with-curl \
-            --with-imap-ssl            
+            --with-imap-ssl
             make && make install
-	    ln -s /usr/local/php/bin/php /usr/local/bin/php
-	    ln -s /usr/local/php/sbin/php-fpm /usr/local/bin/php-fpm	
-	    ln -s /usr/local/php/etc/php-fpm.conf.default /etc/php-fpm.ini
+            ln -s $(get_ini global prefix)/$(get_ini php dir)/bin/php $(get_ini global prefix)/bin/php
+            ln -s $(get_ini global prefix)/$(get_ini php dir)/sbin/php-fpm $(get_ini global prefix)/bin/php-fpm	
+            ln -s $(get_ini global prefix)/etc/php-fpm.conf.default $(get_ini global confDir)/php-fpm.ini
             echo "PHP Complete install";
 			install
         else

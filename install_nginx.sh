@@ -3,8 +3,8 @@ install_nginx(){
     if [ $(whereis -b nginx | tr ' ' '\n' | wc -l) -gt 1 ];then
         echo "nginx has intalled in this machine";install
     else
-        local url_path="http://nginx.org/download/nginx-1.10.1.tar.gz"
-        local dir_name=$envpath"/nginx"
+        local url_path=$(get_ini nginx src)
+        local dir_name=$(get_ini global dlPath)/$(get_ini nginx dir)
         if [ ! -d $dir_name ];then 
             mkdir -p $dir_name 2> /dev/null
         fi
@@ -14,9 +14,9 @@ install_nginx(){
 			tar xzf nginx-1.10.1.tar.gz
 			cd nginx-1.10.1	
 			./configure \
-            		--prefix=/usr/local/nginx
-			--sbin-path=/usr/local/bin/nginx \
-			--conf-path=/etc/nginx.conf \
+                --prefix=$(get_ini global prefix)
+            --sbin-path=$(get_ini global prefix)/bin \
+                --conf-path= $(get_ini global confDir) \
 			--error-log-path=/var/log/nginx/error.log \
 			--pid-path=/var/run/nginx/nginx.pid \
 			--user=nginx \

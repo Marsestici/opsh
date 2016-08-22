@@ -1,7 +1,7 @@
 #! /bin/bash
-wget -c https://www.lua.org/ftp/lua-5.3.3.tar.gz
+wget -c $(get_ini lua src)
 tar zxvf lua-5.3.3.tar.gz
 cd lua-5.3.3
 make linux
 make install
-
+cd ..

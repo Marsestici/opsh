@@ -1,19 +1,5 @@
 #! /bin/bash
-
-. ./ascii_logo.sh
-. ./install_php.sh
-. ./install_apache.sh
-. ./install_nginx.sh
-. ./install_redis.sh
-. ./install_memcache.sh
-. ./install_mysql.sh
-. ./install_git.sh
-
-init(){
-    export envpath=~/onekey;mkdir $envpath 2> /dev/null;
-    install 
-}
-
+opshPath=$(pwd)
 env_init(){
     if [ $envInit -eq 0 ]; then 
     clear
@@ -104,3 +90,20 @@ ft(){
         echo -e "\t\t $2";;
     esac
 }
+get_ini(){
+    echo $(sed -n "/\[$1\]/, /\[.*\]/p" $opshPath/opsh.ini | grep -v "\[.*\]" | grep -w "^$2\s" | awk '{print $3}' | tr -d '\n')
+}
+
+init(){
+    export envpath=~/onekey;mkdir $envpath 2> /dev/null;
+    install 
+}
+
+. ./ascii_logo.sh
+. ./install_php.sh
+. ./install_apache.sh
+. ./install_nginx.sh
+. ./install_redis.sh
+. ./install_memcache.sh
+. ./install_mysql.sh
+. ./install_git.sh
