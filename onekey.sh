@@ -16,12 +16,24 @@ init(){
 }
 env_init(){
     if [ $envInit -eq 0 ]; then 
-    yum install epel-release man gcc gdb qwt curl-devel expat-devel gettext-devel zlib-devel \
-	gcc perl-ExtUtils-MakeMaker unzip gcc-c++ autoconf automake libjpeg libjpeg-devel libpng libpng-devel \
-	freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel \
-	bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel \
-	libidn libidn-devel openssl openssl-devel openldap openldap-devel nss_ldap openldap-clients openldap-servers \
-	gd gd2 gd-devel gd2-devel perl-CPAN pcre-devel php-mcrypt libmcrypt libmcrypt-devel wget libevent cmake libtool -y
+    yum install \
+    epel-release man gcc gdb \
+    qwt curl-devel expat-devel \
+    gettext-devel zlib-devel \
+	gcc perl-ExtUtils-MakeMaker \
+    unzip gcc-c++ autoconf automake \
+    libjpeg libjpeg-devel libpng libpng-devel \
+	freetype freetype-devel libxml2 \
+    libxml2-devel zlib zlib-devel glibc \
+    glibc-devel glib2 glib2-devel \
+	bzip2 bzip2-devel ncurses ncurses-devel \
+    curl curl-devel e2fsprogs e2fsprogs-devel \
+    krb5 krb5-devel libidn libidn-devel \
+    openssl openssl-devel openldap \
+    openldap-devel nss_ldap openldap-clients \
+    openldap-servers gd gd2 gd-devel gd2-devel \
+    perl-CPAN pcre-devel php-mcrypt libmcrypt \
+    libmcrypt-devel wget libevent cmake libtool -y
     envInit=1
     fi
 }
@@ -100,12 +112,38 @@ install_php(){
             cd $dir_name;wget -c $url_path -O php-5.5.38.tar.gz;tar zxvf php-5.5.38.tar.gz
             cd php-5.5.38 
 
-            ./configure --prefix=/usr/local/php --with-config-file-path=/etc/php --enable-fpm --enable-pcntl \
-						--enable-mysqlnd --enable-opcache --enable-sockets --enable-sysvmsg --enable-sysvsem \
-						--enable-sysvshm --enable-shmop --enable-zip --enable-ftp --enable-soap --enable-xml \
-						--enable-mbstring --disable-rpath --disable-debug --disable-fileinfo --with-mysql=mysqlnd \
-						--with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pcre-regex --with-iconv --with-zlib \
-						--with-mcrypt --with-gd --with-openssl --with-mhash --with-xmlrpc --with-curl --with-imap-ssl            
+            ./configure \
+            --prefix=/usr/local/php \
+            --with-config-file-path=/etc/php \
+            --enable-fpm --enable-pcntl \
+		    --enable-mysqlnd \
+            --enable-opcache \
+            --enable-sockets \
+            --enable-sysvmsg \
+            --enable-sysvsem \
+			--enable-sysvshm \
+            --enable-shmop \
+            --enable-zip \
+            --enable-ftp \
+            --enable-soap \
+            --enable-xml \
+			--enable-mbstring \
+            --disable-rpath \
+            --disable-debug \
+            --disable-fileinfo \
+            --with-mysql=mysqlnd \
+			--with-mysqli=mysqlnd \
+            --with-pdo-mysql=mysqlnd \
+            --with-pcre-regex \
+            --with-iconv \
+            --with-zlib \
+		    --with-mcrypt \
+            --with-gd \
+            --with-openssl \
+            --with-mhash \
+            --with-xmlrpc \
+            --with-curl \
+            --with-imap-ssl            
             make && make install;cp ./php.ini-development /etc/php/
             echo "PHP Complete install";
 			install
