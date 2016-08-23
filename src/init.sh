@@ -34,7 +34,7 @@ install(){
     usage;
     case $? in
     1)
-        install_all;;
+        :;;#install_all;;
     2)
         install_apache;;
     3)
@@ -60,8 +60,8 @@ install(){
 
 usage(){
     sc "Do you want to install these for provide web service ?" g
-    sc "(1:all 2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:lua 10:vim)" g
-    echo -n $(sc "Please choose your choice[1-10][n/N]:" g) 
+    sc "(2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:lua 10:vim)" g
+    echo -n $(sc "Please choose your choice[2-10][n/N]:" g) 
     read choose && ([[ $choose == 'n' ]] || [[ $choose == 'N' ]]) && exit
     env_init;
     return $choose
