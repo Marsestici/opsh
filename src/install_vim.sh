@@ -14,7 +14,7 @@ install_vim(){
     ./configure && make && make install
     cd ..
 
-    . $(get_ini global dlPath)/install_lua.sh
+    . $opshPath/src/install_lua.sh
     wget -c $(get_ini vim src)
     tar jxf vim-7.4.tar.bz2
     cd vim74/
@@ -32,5 +32,5 @@ install_vim(){
     make && make install
     curl $(get_ini vim spf13) -l > spf13-vim.sh && sh spf13-vim.sh
     cd ..
-    sed '$r ~/.vimrc.local' conf/vimrc > ~/.vimrc.local
+    sed '$r ~/.vimrc.local' $opshPath/conf/vimrc > ~/.vimrc.local
 }
