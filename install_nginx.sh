@@ -14,7 +14,7 @@ install_nginx(){
 			tar xzf nginx-1.10.1.tar.gz
 			cd nginx-1.10.1	
 			./configure \
-			--prefix=/usr \
+            --prefix=usr/local/nginx
 			--sbin-path=/usr/sbin/nginx \
 			--conf-path=/etc/nginx/nginx.conf \
 			--error-log-path=/var/log/nginx/error.log \

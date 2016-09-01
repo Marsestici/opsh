@@ -1,0 +1,8 @@
+inoremap <C-u> <esc>gUiwea
+inoremap jj <esc>
+inoremap kk <esc>:wq<Enter>
+inoremap ll <esc>A
+inoremap hh <esc>^i
+inoremap pp <C-p>
+inoremap uu <esc>u
+nnoremap ii ^i#<esc>j^

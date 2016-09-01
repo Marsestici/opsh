@@ -16,7 +16,8 @@ install_php(){
             ./configure \
             --prefix=/usr/local/php \
             --with-config-file-path=/etc/php \
-            --enable-fpm --enable-pcntl \
+            --enable-fpm \
+            --enable-pcntl \
 		    --enable-mysqlnd \
             --enable-opcache \
             --enable-sockets \

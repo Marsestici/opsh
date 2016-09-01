@@ -14,7 +14,7 @@ install_apache(){
             cd $dir_name;
 			#Apache Portable Runtime Project
 			wget http://mirror.bit.edu.cn/apache/apr/apr-1.5.2.tar.gz
-			tar zxvf apr-1.5.2.tar.gz
+            tar zxvf apr-1.5.2.tar.gz
 			cd apr-1.5.2
 			./configure --prefix=/usr/local/apache/apr
 			make && make install
