@@ -1,4 +1,6 @@
 #! /bin/bash
+
+. ./ascii_logo.sh
 . ./install_php.sh
 . ./install_apache.sh
 . ./install_nginx.sh
@@ -8,21 +10,15 @@
 . ./install_git.sh
 
 init(){
-    clear
-    ft l
-    ft t "Centos 6.x Web Environment Deployment"
-    ft t "OS: $(cat /etc/issue|head -n 1)"
-    ft t "Kernel: $(uname -r)"
-    ft t "Time: $(date)"
-    ft t "Login User: $USER"
-    ft t "Bash Version: $BASH_VERSION"
-    ft t "Author: MurwenBing@hotmail.com"
-    ft l
     export envpath=~/onekey;mkdir $envpath 2> /dev/null;
     install 
 }
+
 env_init(){
     if [ $envInit -eq 0 ]; then 
+    clear
+    echo -e "Environment expansion initialization...wait a moment..."
+    sleep 3s
     yum install \
     epel-release man gcc gdb \
     qwt curl-devel expat-devel \
@@ -44,8 +40,9 @@ env_init(){
     envInit=1
     fi
 }
+
 install(){
-    env_init;usage;
+    usage;
     case $? in
     1)
         install_all;;
@@ -63,20 +60,22 @@ install(){
         install_memcache;;
 	8)
 		install_git;;
+    9)
+        :;;
     *)
         install;;
     esac
 }
 
-
-
 usage(){
     sc "Do you want to install these for provide web service ?" g
-    sc "(1:all 2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git)" g
-    echo -n $(sc "Please choose your choice[1-8]:" g) 
-    read choose
+    sc "(1:all 2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:vim)" g
+    echo -n $(sc "Please choose your choice[1-9][n/N]:" g) 
+    read choose && ([[ $choose == 'n' ]] || [[ $choose == 'N' ]]) && exit
+    env_init;
     return $choose
 }
+
 sc(){
     case $2 in 
     blue|b)
@@ -91,10 +90,14 @@ sc(){
         echo -e "\e[1;37m $1 \e[0m";;
     esac
 }
+
 ft(){
+    rows=$(stty -a | head -n 1 | tr ';' ' ' | awk '{print $5}')
+    cols=$(stty -a | head -n 1 | tr ';' ' ' | awk '{print $7}')
+    let cols-=2
     case $1 in
     line|l)
-        str=$(printf "%-102s" "-");echo "+${str// /-}";;
+        str=$(printf "%-${cols}s" "-");echo "+${str// /-}";;
     text|t)
         str=$(printf  "%5s" $2);echo "+${str}";;
     *)
