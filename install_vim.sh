@@ -1,9 +1,9 @@
 #! /bin/bash
 
-wget -c http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
-tar zxvf ctags-5.8.tar.gz
-cd ctags-5.8
-./configure && make && make install
+#wget -c http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
+#tar zxvf ctags-5.8.tar.gz
+#cd ctags-5.8
+#./configure && make && make install
 
 wget -c ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
 tar jxf vim-7.4.tar.bz2
@@ -14,9 +14,9 @@ cd vim74/
     --enable-largefile \
     --enable-multibyte \
     --disable-netbeans \
-    --enable-luainterp \
-    --with-lua-prefix=/usr/bin \
+    --enable-luainterp=yes \
+    --with-lua-prefix=/usr/local \
     --enable-pythoninterp \
-    --enable-cscope -prefix=/usr 
+    --enable-cscope --prefix=/usr
 make && make install
-curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+#curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh

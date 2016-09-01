@@ -6,6 +6,7 @@
 . ./install_memcache.sh
 . ./install_mysql.sh
 . ./install_git.sh
+
 init(){
     clear
     ft l
