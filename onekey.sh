@@ -137,7 +137,7 @@ ft(){
 }
 #PHP install
 install_all(){
-:
+exit "hi world"
 }
 install_php(){
     #if [ $(whereis -b php | tr ' ' '\n' | wc -l) -gt 1 ];then
