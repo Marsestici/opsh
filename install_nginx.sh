@@ -14,9 +14,9 @@ install_nginx(){
 			tar xzf nginx-1.10.1.tar.gz
 			cd nginx-1.10.1	
 			./configure \
-            --prefix=usr/local/nginx
-			--sbin-path=/usr/sbin/nginx \
-			--conf-path=/etc/nginx/nginx.conf \
+            		--prefix=/usr/local/nginx
+			--sbin-path=/usr/local/bin/nginx \
+			--conf-path=/etc/nginx.conf \
 			--error-log-path=/var/log/nginx/error.log \
 			--pid-path=/var/run/nginx/nginx.pid \
 			--user=nginx \
@@ -28,6 +28,8 @@ install_nginx(){
 			--http-fastcgi-temp-path=/var/tmp/nginx/fcgi \
 			--with-http_stub_status_module
 			make && make install
+			ln -s /usr/local/nginx/conf/nginx.conf /etc/nginx.conf
+			sed -i '65,71s/#//' /etc/nginx.conf	
 			mkdir -p /var/tmp/nginx/client
             echo "Nginx Complete install";
 			install

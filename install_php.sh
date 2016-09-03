@@ -46,7 +46,10 @@ install_php(){
             --with-xmlrpc \
             --with-curl \
             --with-imap-ssl            
-            make && make install;cp ./php.ini-development /etc/php/
+            make && make install
+	    ln -s /usr/local/php/bin/php /usr/local/bin/php
+	    ln -s /usr/local/php/sbin/php-fpm /usr/local/bin/php-fpm	
+	    ln -s /usr/local/php/etc/php-fpm.conf.default /etc/php-fpm.ini
             echo "PHP Complete install";
 			install
         else

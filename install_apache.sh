@@ -55,6 +55,17 @@ install_apache(){
 						--enable-ssl \
 						--with-mpm=prefork
             make && make install;
+	    ln -s /usr/local/apache/conf/httpd.conf /etc/httpd.conf
+	    sed -i '/mod_proxy.so/s/#//' /etc/httpd.conf
+	    sed -i '/mod_proxy_fcgi.so/s/#//' /etc/httpd.conf
+
+	    sed -i '$a\
+		<FilesMatch \\.php$>\
+			SetHandle "proxy:fcgi://127.0.0.1:9000"\
+		</FilesMatch>' /etc/httpd.conf
+	    sed -i '$a\-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT' /etc/sysconfig/iptables
+
+	    service iptables restart
             echo "Apache Complete install";
 			install
         else
