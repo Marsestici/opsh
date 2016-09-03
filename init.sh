@@ -36,7 +36,7 @@ env_init(){
     openldap-devel nss_ldap openldap-clients \
     openldap-servers gd gd2 gd-devel gd2-devel \
     perl-CPAN pcre-devel php-mcrypt libmcrypt \
-    libmcrypt-devel wget libevent cmake libtool -y
+    libmcrypt-devel wget libevent cmake libtool readline-devel -y
     envInit=1
     fi
 }

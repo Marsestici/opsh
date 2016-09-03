@@ -28,8 +28,8 @@ install_nginx(){
 			--http-fastcgi-temp-path=/var/tmp/nginx/fcgi \
 			--with-http_stub_status_module
 			make && make install
-			ln -s /usr/local/nginx/conf/nginx.conf /etc/nginx.conf
 			sed -i '65,71s/#//' /etc/nginx.conf	
+			sed -i '/fastcgi_param/s/script\//$document_root/' /usr/local/nginx/conf/nginx.conf
 			mkdir -p /var/tmp/nginx/client
             echo "Nginx Complete install";
 			install
