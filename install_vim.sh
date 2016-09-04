@@ -1,5 +1,4 @@
 #! /bin/bash
-
 install_vim(){
 
     local url_path=$(get_ini vim ctag)
