@@ -14,7 +14,7 @@ install_php(){
             cd php-5.5.38 
 
             ./configure \
-            --prefix=$(get_ini global prefix) \
+                --prefix=$(get_ini global prefix)/$(get_ini php dir) \
             --with-config-file-path=$(get_ini global confDir) \
             --enable-fpm \
             --enable-pcntl \
@@ -49,7 +49,7 @@ install_php(){
             make && make install
             ln -s $(get_ini global prefix)/$(get_ini php dir)/bin/php $(get_ini global prefix)/bin/php
             ln -s $(get_ini global prefix)/$(get_ini php dir)/sbin/php-fpm $(get_ini global prefix)/bin/php-fpm	
-            ln -s $(get_ini global prefix)/etc/php-fpm.conf.default $(get_ini global confDir)/php-fpm.ini
+            ln -s $(get_ini global prefix)/$(get_ini php dir)/etc/php-fpm.conf.default $(get_ini global confDir)/php-fpm.ini
             echo "PHP Complete install";
 			install
         else

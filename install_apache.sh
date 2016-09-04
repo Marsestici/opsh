@@ -27,7 +27,7 @@ install_apache(){
             wget $(get_ini apache aprUtil)
 			tar zxvf apr-util-1.5.4.tar.gz
 			cd apr-util-1.5.4
-            ./configure --prefix=$mtAbsPath/apr/apr-util --with-apr=$mtAbsPath/apr
+            ./configure --prefix=$mtAbsPath/apr-util --with-apr=$mtAbsPath/apr
 			make && make install
 			
 			cd ..
@@ -66,8 +66,8 @@ install_apache(){
 
 	    sed -i '$a\
 		<FilesMatch \\.php$>\
-			SetHandle "proxy:fcgi://127.0.0.1:9000"\
-            </FilesMatch>' $(get_ini global confDir)/httpd.conf
+			SetHandler "proxy:fcgi://127.0.0.1:9000"\
+        </FilesMatch>' $(get_ini global confDir)/httpd.conf
 	    sed -i '/COMMIT/i\-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT' /etc/sysconfig/iptables
 	    service iptables restart
             echo "Apache Complete install";
