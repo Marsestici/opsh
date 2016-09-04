@@ -19,10 +19,10 @@ get_header() {
     done
     if [ $src_status -gt 0 ];then
         echo -e "\n\n\e[1;31mSorry~,the url is invalid, please change source download url...\e[0m"
-        kill -s 9 $$
+        return 1
     fi
-
+    return 0
 }
 
 sed -n "/http/p;/ftp/p" opsh.ini \
-    | awk '{print $3}' | tr '\n' ' ' | get_header
+    | awk '{print $3}' | tr '\n' ' ' | get_header || exit
