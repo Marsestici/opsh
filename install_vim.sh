@@ -1,25 +1,37 @@
 #! /bin/bash
-wget -c http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
-tar zxvf ctags-5.8.tar.gz
-cd ctags-5.8
-./configure && make && make install
-cd ..
-. ./install_lua.sh
-wget -c ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
-tar jxf vim-7.4.tar.bz2
-cd vim74/
-sed -i '/luaL_optlong/s/luaL_optlong/(long)luaL_optinteger/' src/if_lua.c
-./configure --with-features=huge \
-    --enable-cscope \
-    --enable-rubyinterp \
-    --enable-largefile \
-    --enable-multibyte \
-    --disable-netbeans \
-    --enable-luainterp \
-    --with-lua-prefix=/usr/local \
-    --enable-pythoninterp \
-    --enable-cscope --prefix=/usr
-make && make install
-curl https://raw.githubusercontent.com/spf13/spf13-vim/3.0/bootstrap.sh -l > spf13-vim.sh && sh spf13-vim.sh
-cd ..
-sed '$r ~/.vimrc.local' conf/vimrc >> ~/.vimrc.local
+
+install_vim(){
+
+    local url_path=$(get_ini vim ctag)
+    local dir_name=$(get_ini global dlPath)/$(get_ini vim dir);
+    if test ! -d $dir_name ;then
+        mkdir -p $dir_name 2> /dev/null
+    fi
+    cd $dir_name
+    wget -c $url_path
+
+    tar zxvf ctags-5.8.tar.gz
+    cd ctags-5.8
+    ./configure && make && make install
+    cd ..
+
+    . $(get_ini global dlPath)/install_lua.sh
+    wget -c $(get_ini vim src)
+    tar jxf vim-7.4.tar.bz2
+    cd vim74/
+    sed -i '/luaL_optlong/s/luaL_optlong/(long)luaL_optinteger/' src/if_lua.c
+    ./configure --with-features=huge \
+        --enable-cscope \
+        --enable-rubyinterp \
+        --enable-largefile \
+        --enable-multibyte \
+        --disable-netbeans \
+        --enable-luainterp \
+        --with-lua-prefix=/usr/local \
+        --enable-pythoninterp \
+        --enable-cscope --prefix=/usr
+    make && make install
+    curl $(get_ini vim spf13) -l > spf13-vim.sh && sh spf13-vim.sh
+    cd ..
+    sed '$r ~/.vimrc.local' conf/vimrc > ~/.vimrc.local
+}

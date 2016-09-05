@@ -1,5 +1,7 @@
 #! /bin/bash
+
 opshPath=$(pwd)
+
 env_init(){
     if [ $envInit -eq 0 ]; then 
     clear
@@ -44,10 +46,12 @@ install(){
         install_redis;;
     7)
         install_memcache;;
-	8)
-		install_git;;
+    8)
+        install_git;;
     9)
-        :;;
+        install_lua;;
+    10)
+        install_vim;;
     *)
         install;;
     esac
@@ -55,8 +59,8 @@ install(){
 
 usage(){
     sc "Do you want to install these for provide web service ?" g
-    sc "(1:all 2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:vim)" g
-    echo -n $(sc "Please choose your choice[1-9][n/N]:" g) 
+    sc "(1:all 2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:lua 10:vim)" g
+    echo -n $(sc "Please choose your choice[1-10][n/N]:" g) 
     read choose && ([[ $choose == 'n' ]] || [[ $choose == 'N' ]]) && exit
     env_init;
     return $choose
@@ -95,7 +99,7 @@ get_ini(){
 }
 
 init(){
-    export envpath=~/onekey;mkdir $envpath 2> /dev/null;
+    #export envpath=~/onekey;mkdir $envpath 2> /dev/null;
     install 
 }
 
@@ -107,3 +111,6 @@ init(){
 . ./install_memcache.sh
 . ./install_mysql.sh
 . ./install_git.sh
+. ./install_lua.sh
+. ./install_vim.sh
+
