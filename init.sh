@@ -102,8 +102,8 @@ init(){
     #export envpath=~/onekey;mkdir $envpath 2> /dev/null;
     install 
 }
-
-. ./ascii_logo.sh
+. ./env_detection.sh
+#. ./ascii_logo.sh
 . ./install_php.sh
 . ./install_apache.sh
 . ./install_nginx.sh
