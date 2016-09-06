@@ -103,7 +103,7 @@ init(){
     install 
 }
 . ./env_detection.sh
-#. ./ascii_logo.sh
+. ./ascii_logo.sh
 . ./install_php.sh
 . ./install_apache.sh
 . ./install_nginx.sh
