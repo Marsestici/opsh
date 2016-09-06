@@ -1,4 +1,4 @@
 #! /bin/bash
 export envInit=0
-. ./init.sh
+. ./src/init.sh
 init
