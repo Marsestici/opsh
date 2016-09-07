@@ -24,7 +24,8 @@ env_init(){
     openldap-devel nss_ldap openldap-clients \
     openldap-servers gd gd2 gd-devel gd2-devel \
     perl-CPAN pcre-devel php-mcrypt libmcrypt \
-    libmcrypt-devel wget libevent cmake libtool readline-devel -y
+    libmcrypt-devel wget libevent cmake libtool \
+    readline-devel -y
     envInit=1
     fi
 }
@@ -95,22 +96,22 @@ ft(){
     esac
 }
 get_ini(){
-    echo $(sed -n "/\[$1\]/, /\[.*\]/p" $opshPath/opsh.ini | grep -v "\[.*\]" | grep -w "^$2\s" | awk '{print $3}' | tr -d '\n')
+    echo $(sed -n "/\[$1\]/, /\[.*\]/p" $opshPath/conf/opsh.ini | grep -v "\[.*\]" | grep -w "^$2\s" | awk '{print $3}' | tr -d '\n')
 }
 
 init(){
     #export envpath=~/onekey;mkdir $envpath 2> /dev/null;
     install 
 }
-. ./env_detection.sh
-. ./ascii_logo.sh
-. ./install_php.sh
-. ./install_apache.sh
-. ./install_nginx.sh
-. ./install_redis.sh
-. ./install_memcache.sh
-. ./install_mysql.sh
-. ./install_git.sh
-. ./install_lua.sh
-. ./install_vim.sh
+. $opshPath/conf/env_detection.sh
+. $opshPath/src/ascii_logo.sh
+. $opshPath/src/install_php.sh
+. $opshPath/src/install_apache.sh
+. $opshPath/src/install_nginx.sh
+. $opshPath/src/install_redis.sh
+. $opshPath/src/install_memcache.sh
+. $opshPath/src/install_mysql.sh
+. $opshPath/src/install_git.sh
+. $opshPath/src/install_lua.sh
+. $opshPath/src/install_vim.sh
 

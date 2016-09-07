@@ -44,7 +44,7 @@ status() {
 
 case "$1" in
     restart)
-	start && success || failure
+	restart && success || failure
 	;;
 
     start)

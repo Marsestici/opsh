@@ -30,6 +30,7 @@ install_mysql(){
 			-DDEFAULT_CHARSET=utf8 \
 			-DDEFAULT_COLLATION=utf8_general_ci
 			make && make install
+            cp $(get_ini global prefix)/$(get_ini mysql dir)/support-files/mysql.server $(get_ini global confDir)/init.d/mysqld
             echo "Mysql Complete install";
 			install
         else

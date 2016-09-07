@@ -60,7 +60,7 @@ install_apache(){
 						--enable-ssl \
                         --with-mpm=$(get_ini apache mpm)
             make && make install;
-	    #ln -s /usr/local/apache/conf/httpd.conf /etc/httpd.conf
+	    ln -s $opshPath/init.d/httpd /etc/init.d/httpd
         sed -i '/mod_proxy.so/s/#//' $(get_ini global confDir)/httpd.conf
         sed -i '/mod_proxy_fcgi.so/s/#//' $(get_ini global confDir)/httpd.conf
 
