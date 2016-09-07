@@ -20,6 +20,7 @@ get_header() {
     done
     if [ $src_status -gt 0 ];then
         echo -e "\n\n\e[1;31mSorry~,the url is invalid, please change source download url...\e[0m"
+        vim $opshPath/conf/opsh.ini
         return 1
     fi
     return 0
@@ -40,4 +41,3 @@ done
 echo -e "\n\n\e[1;31mDo you want to continue to do it...[y/n]\e[0m"
 read key
 [[ $key == 'n' ]] && exit
-
