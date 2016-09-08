@@ -13,5 +13,6 @@ install_lua(){
     cd lua-5.3.3
     make linux
     make install
+    ln -s /usr/local/bin/lua /usr/bin/lua
     cd ..
 }
