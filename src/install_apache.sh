@@ -11,9 +11,8 @@ install_apache(){
     else
         local url_path=$(get_ini apache src)
         local dir_name=$dlAbsPath
-        if [ ! -d $dir_name ];then 
-            mkdir -p $dir_name 2> /dev/null
-        fi
+        [ ! -d $dir_name ] && mkdir -p $dir_name 2> /dev/null
+            
         if [ $? -eq 0 ];then
             cd $dir_name;
 			#Apache Portable Runtime Project

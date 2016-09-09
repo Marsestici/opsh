@@ -6,9 +6,8 @@ install_php(){
     else
         local url_path=$(get_ini php src)
         local dir_name=$(get_ini global dlPath)/$(get_ini php dir)
-        if [ ! -d $dir_name ];then 
-            mkdir -p $dir_name 2> /dev/null
-        fi
+        [ ! -d $dir_name ] && mkdir -p $dir_name 2> /dev/null
+
         if [ $? -eq 0 ];then
             cd $dir_name;wget -c $url_path -O php-5.5.38.tar.gz;tar zxvf php-5.5.38.tar.gz
             cd php-5.5.38 

@@ -100,9 +100,9 @@ get_ini(){
 }
 
 init(){
-    #export envpath=~/onekey;mkdir $envpath 2> /dev/null;
     install 
 }
+
 . $opshPath/conf/env_detection.sh
 . $opshPath/src/ascii_logo.sh
 . $opshPath/src/install_php.sh
