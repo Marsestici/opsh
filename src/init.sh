@@ -1,6 +1,6 @@
 #! /bin/bash
 
-opshPath=$(pwd)
+opshPath=~+
 
 env_init(){
     if [ $envInit -eq 0 ]; then 
