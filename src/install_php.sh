@@ -49,6 +49,8 @@ install_php(){
             ln -s $(get_ini global prefix)/$(get_ini php dir)/bin/php $(get_ini global prefix)/bin/php
             ln -s $(get_ini global prefix)/$(get_ini php dir)/sbin/php-fpm $(get_ini global prefix)/bin/php-fpm	
             ln -s $(get_ini global prefix)/$(get_ini php dir)/etc/php-fpm.conf.default $(get_ini global confDir)/php-fpm.ini
+            ln -s $(get_ini global prefix)/$(get_ini php dir)/bin/phpize $(get_ini global prefix)/bin/phpize
+            ln -s $(get_ini global prefix)/$(get_ini php dir)/bin/php-config $(get_ini global prefix)/bin/php-config
             echo "PHP Complete install";
 			install
         else
