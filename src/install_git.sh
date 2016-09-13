@@ -17,6 +17,8 @@ install_git(){
             autoconf
             ./configure --prefix=$(get_ini global prefix)/$(get_ini git dir) && make && make install
             ln -sf $(get_ini global dlPath)/$(get_ini git dir)/bin/git /usr/bin/git
+            cp -f $(echo $(locate git-completion.bash) | head -n 1) ~/.git-completion.bash
+            . ~/.git-completion.bash
             echo "Git Complete install";
 			install
         else
