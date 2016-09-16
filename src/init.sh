@@ -53,6 +53,8 @@ install(){
         install_lua;;
     10)
         install_vim;;
+    11)
+        install_influxdb;;
     *)
         install;;
     esac
@@ -60,7 +62,7 @@ install(){
 
 usage(){
     sc "Do you want to install these for provide web service ?" g
-    sc "(2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:lua 10:vim)" g
+    sc "(2:apache 3:nginx 4:php 5:mysql 6:redis 7:memcache 8:git 9:lua 10:vim 11:influxdb)" g
     echo -n $(sc "Please choose your choice[2-10][n/N]:" g) 
     read choose && ([[ $choose == 'n' ]] || [[ $choose == 'N' ]]) && exit
     env_init;
@@ -111,6 +113,7 @@ init(){
 . $opshPath/src/install_redis.sh
 . $opshPath/src/install_memcache.sh
 . $opshPath/src/install_mysql.sh
+. $opshPath/src/install_influxdb.sh
 . $opshPath/src/install_git.sh
 . $opshPath/src/install_lua.sh
 . $opshPath/src/install_vim.sh

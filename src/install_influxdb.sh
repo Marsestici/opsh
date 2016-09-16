@@ -1,7 +1,7 @@
 #! /bin/bash
 
 install_influxdb(){
-    if [ $(whereis -b influxdbd | tr ' ' '\n' | wc -l) -gt 1 ];then
+    if [ $(whereis -b influxd| tr ' ' '\n' | wc -l) -gt 1 ];then
         echo "influxdb has intalled in this machine";install
     else
         local url_path=$(get_ini influxdb src)
@@ -12,10 +12,7 @@ install_influxdb(){
         if [ $? -eq 0 ];then
             cd $dir_name;
 			wget $url_path 
-			tar zxvf influxdb-5.5.51.tar.gz
-			cd influxdb-5.5.51 
-
-
+            yum localinstall influxdb-1.0.0.x86_64.rpm -y
             echo "influxdb Complete install";
 			install
         else
