@@ -13,6 +13,11 @@ install_influxdb(){
             cd $dir_name;
 			wget $url_path 
             yum localinstall influxdb-1.0.0.x86_64.rpm -y
+            sed -i '/:OUTPUT/a\-A INPUT -m state --state NEW -m tcp -p tcp --dport 8083 -j ACCEPT' /etc/sysconfig/iptables
+            sed -i '/:OUTPUT/a\-A INPUT -m state --state NEW -m tcp -p tcp --dport 8086 -j ACCEPT' /etc/sysconfig/iptables
+            sed -i '/:OUTPUT/a\-A INPUT -m state --state NEW -m tcp -p tcp --dport 8088 -j ACCEPT' /etc/sysconfig/iptables
+    	    service iptables restart
+ 
             echo "influxdb Complete install";
 			install
         else
